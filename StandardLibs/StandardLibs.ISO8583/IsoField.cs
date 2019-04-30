@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using StandardLibs.Utility;
 
 namespace StandardLibs.ISO8583
 {
-    public class IsoField
+    public class IsoField : JsonComparable
     {
         public virtual int FuncNo { get; set; }
         public virtual string FuncData { get; set; }

@@ -68,7 +68,7 @@ namespace StandardLibs.ISO8583
             return "1".Equals(this.BitMap.Substring(funcNo - 1, 1));
         }
 
-        public byte[] Message2Bytes()
+        public byte[] MessageToBytes()
         {
             byte[] resultBytes = new byte[2 + this.MessageSize];
             resultBytes[0] = (byte)(this.MessageSize >> 8);

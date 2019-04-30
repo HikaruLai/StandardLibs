@@ -65,19 +65,19 @@ namespace StandardLibs.Utility
             }
         }
 
-        public string Str2Hex(string str)
+        public string StrToHex(string str)
         {
             byte[] byteArr = this.encoding.GetBytes(str);
-            return this.Bytes2Hex(byteArr);
+            return this.BytesToHex(byteArr);
         }
 
-        public string Hex2Str(string hexStr)
+        public string HexToStr(string hexStr)
         {
-            byte[] byteArr = this.Hex2Bytes(hexStr);
+            byte[] byteArr = this.HexToBytes(hexStr);
             return this.encoding.GetString(byteArr);
         }
 
-        public byte[] Hex2Bytes(string hexStr)
+        public byte[] HexToBytes(string hexStr)
         {       
             if (hexStr.Length % hexPerByte != 0)
             {
@@ -93,20 +93,20 @@ namespace StandardLibs.Utility
             return byteArr;
         }
 
-        public byte[] Hex2Bytes(byte[] hexBytes)
+        public byte[] HexToBytes(byte[] hexBytes)
         {
             string hexStr = Encoding.ASCII.GetString(hexBytes);
-            return this.Hex2Bytes(hexStr);
+            return this.HexToBytes(hexStr);
         }
 
-        public string Bytes2Hex(byte[] dataBytes)
+        public string BytesToHex(byte[] dataBytes)
         {
             StringBuilder sb = new StringBuilder();
-            dataBytes.ToList().ForEach(item => sb.Append(Byte2Hex(item)));
+            dataBytes.ToList().ForEach(item => sb.Append(ByteToHex(item)));
             return sb.ToString();
         }
 
-        public string Byte2Hex(byte b)
+        public string ByteToHex(byte b)
         {
             return hexArr[b];
         }

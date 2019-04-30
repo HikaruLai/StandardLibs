@@ -8,4 +8,10 @@
     <ProjectReference Include="..\StandardLibs.Utility\StandardLibs.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Config\iso8583Fn.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
