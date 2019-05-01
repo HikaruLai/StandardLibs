@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using NLog;
+using Microsoft.Extensions.Logging;
 
 namespace StandardLibs.ISO8583
 {
-    public class Df61MessageWorker
+    public class Df61MessageWorker : IMessageWorker
     {
         private ILogger logger { get; set; }
         public IBitMapWorker BitMapWorker { private get; set; }
         public BitWorker Df61BitWorker { private get; set; }
 
-        public Df61MessageWorker(ILogger logger, IBitMapWorker bitMapWorker, BitWorker bitWorker)
+        public Df61MessageWorker(ILogger<Df61MessageWorker> logger, IBitMapWorker bitMapWorker, BitWorker bitWorker)
         {
             this.logger = logger;
             this.BitMapWorker = bitMapWorker;
@@ -45,7 +45,7 @@ namespace StandardLibs.ISO8583
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                logger.LogError(ex.Message);
             }
             return null;
         }
@@ -90,7 +90,7 @@ namespace StandardLibs.ISO8583
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                logger.LogError(ex.Message);
             }
             return null;
         }

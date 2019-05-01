@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
-using NLog;
+using System.Xml.XPath;
+using Microsoft.Extensions.Logging;
 
 namespace StandardLibs.ISO8583
 {
-    public class Iso8583Info
+    public class Iso8583Info : IIso8583Info
     {
         private XElement root { get; set; }
         private ILogger logger { get; set; }
@@ -33,7 +34,7 @@ namespace StandardLibs.ISO8583
             }
             catch (Exception ex)
             {
-                logger.Error(ex.StackTrace);
+                logger.LogError(ex.StackTrace);
             }
         }
 
@@ -45,32 +46,32 @@ namespace StandardLibs.ISO8583
             }
             catch (Exception ex)
             {
-                logger.Error(ex.StackTrace);
+                logger.LogError(ex.StackTrace);
             }
         }
 
         private void getPosInfo(string xPathStr)
         {
-            //XElement xtr = null;
+            XElement xtr = null;
             try
             {
-                //xtr = this.root.XPathSelectElement(xPathStr);
+                xtr = this.root.XPathSelectElement(xPathStr);
 
-                //xPathStr = @"./BITS";
-                //xtr = xtr.XPathSelectElement(xPathStr);
-                //IEnumerable<XElement> xenu = xtr.Elements("BIT");
-                //foreach (XElement xe in xenu)
-                //{
-                //    BitIndex pi = new BitIndex();
-                //    pi.Id = (int)xe.Attribute("id");
-                //    pi.Representation = (string)xe.Attribute("representation");
-                //    pi.Name = (string)xe.Attribute("name");
-                //    this.posList.Add(pi);
-                //}
+                xPathStr = @"./BITS";
+                xtr = xtr.XPathSelectElement(xPathStr);
+                IEnumerable<XElement> xenu = xtr.Elements("BIT");
+                foreach (XElement xe in xenu)
+                {
+                    BitIndex pi = new BitIndex();
+                    pi.Id = (int)xe.Attribute("id");
+                    pi.Representation = (string)xe.Attribute("representation");
+                    pi.Name = (string)xe.Attribute("name");
+                    this.posList.Add(pi);
+                }
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                logger.LogError(ex.Message);
             }
         }
 

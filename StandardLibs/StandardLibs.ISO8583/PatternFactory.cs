@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using NLog;
+using Microsoft.Extensions.Logging;
 
 namespace StandardLibs.ISO8583
 {
@@ -10,7 +10,8 @@ namespace StandardLibs.ISO8583
     /// </summary>
     public class PatternFactory
     {
-        private static Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        private static ILoggerFactory loggerFactory { get; } = new LoggerFactory();
+        private static ILogger logger => loggerFactory.CreateLogger("PatternFactory");
         private static PatternFactory patternFactory = new PatternFactory();
         private IDictionary<string, IPattern> dicPatterns = new Dictionary<string, IPattern>();
         private object obj = new object();

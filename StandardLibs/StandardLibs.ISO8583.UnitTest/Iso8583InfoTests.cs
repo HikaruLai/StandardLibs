@@ -1,40 +1,34 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using LightInject;
 using NLog;
 using Xunit;
 using StandardLibs.Dna;
 using StandardLibs.Dna.Construction;
 
+
 namespace StandardLibs.ISO8583.UnitTest
 {
-    public class BitWorkerTests
+    public class Iso8583InfoTests
     {
         private IServiceContainer ctx;
-        private BitWorker commonBitWorker = null;
-        private BitWorker df61BitWorker = null;
+        private IIso8583Info commonInfo = null;
+        private IIso8583Info df61Info = null;
         private static ILoggerFactory loggerFactory = new LoggerFactory();
-        private static NLog.ILogger logger = LogManager.GetCurrentClassLogger(); 
-        public BitWorkerTests()
+        private static NLog.ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public Iso8583InfoTests()
         {
             Framework.Construct<DefaultFrameworkConstruction>().Build();
             Framework.Container
-                .Register<BitWorker>(
-                    f => new BitWorker(logger: loggerFactory.CreateLogger<BitWorker>(), iso8583Info: f.GetInstance<IIso8583Info>("commonInfoGetter")),
-                    "commonBitWorker",
-                    new PerContainerLifetime()
-                 ).Register<BitWorker>(
-                    f => new BitWorker(logger: loggerFactory.CreateLogger<BitWorker>(), iso8583Info: f.GetInstance<IIso8583Info>("df61InfoGetter")),
-                    "df61BitWorker",
-                    new PerContainerLifetime()
-                 )
-                 .Register<IIso8583Info>(
+               .Register<IIso8583Info>(
                     f => new Iso8583Info(
                         logger: loggerFactory.CreateLogger<Iso8583Info>(),
                         assemblyName: "StandardLibs.ISO8583",
                         cfgFileName: "StandardLibs.ISO8583.Config.iso8583Fn.xml",
                         xPath: @"//Message[@name='Common' and @peer='Common']"
                     ),
-                    "commonInfoGetter",
+                    "commonInfo",
                     new PerContainerLifetime()
                 )
                .Register<IIso8583Info>(
@@ -44,31 +38,30 @@ namespace StandardLibs.ISO8583.UnitTest
                         cfgFileName: "StandardLibs.ISO8583.Config.iso8583Fn.xml",
                         xPath: @"//Message[@name='DF61' and @peer='Common']"
                     ),
-                    "df61InfoGetter",
+                    "df61Info",
                     new PerContainerLifetime()
                 );
             this.ctx = Framework.Container;
-            this.commonBitWorker = this.ctx.GetInstance<BitWorker>("commonBitWorker");
-            this.df61BitWorker = this.ctx.GetInstance<BitWorker>("df61BitWorker");
-
+            this.commonInfo = this.ctx.GetInstance<IIso8583Info>("commonInfo");
+            this.df61Info = this.ctx.GetInstance<IIso8583Info>("df61Info");
         }
 
         [Fact]
-        public void TestGetCommonInfos()
+        public void TestCommonGetInfos()
         {
-            for (int i = 0; i < this.commonBitWorker.Length(); i++)
+            IList<BitIndex> bitList = this.commonInfo.GetPosInfos();
+            foreach (BitIndex bi in bitList)
             {
-                BitIndex bi = this.commonBitWorker[i];
                 logger.Debug($"{0}", bi);
             }
         }
 
         [Fact]
-        public void TestGetDf61Infos()
+        public void TestD61GetInfos()
         {
-            for (int i = 0; i < this.df61BitWorker.Length(); i++)
+            IList<BitIndex> bitList = this.df61Info.GetPosInfos();
+            foreach (BitIndex bi in bitList)
             {
-                BitIndex bi = this.df61BitWorker[i];
                 logger.Debug($"{0}", bi);
             }
         }

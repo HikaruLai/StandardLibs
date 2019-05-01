@@ -1,0 +1,19 @@
+{
+  "Logging": {
+    "Debug": {
+      "LogLevel": {
+        "Default": "Information"
+      }
+    },
+    "Console": {
+      "IncludeScopes": false,
+      "LogLevel": {
+        "Default": "Warning"
+      }
+    },
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}

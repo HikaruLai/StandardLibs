@@ -1,6 +1,6 @@
 ﻿using System;
+using Microsoft.Extensions.Logging;
 using StandardLibs.Utility;
-using NLog;
 
 namespace StandardLibs.ISO8583
 {
@@ -8,7 +8,7 @@ namespace StandardLibs.ISO8583
     {
         private ILogger logger { get; set; }
 
-        public BitWorker(ILogger logger, IIso8583Info iso8583Info)
+        public BitWorker(ILogger<BitWorker> logger, IIso8583Info iso8583Info)
         {
             this.logger = logger;
             this.SetTagList(iso8583Info.GetPosInfos());
@@ -23,7 +23,7 @@ namespace StandardLibs.ISO8583
                 this.tagIndexList.RemoveAt(index);
             }
             // must implement this...
-            logger.Debug("SetTag[{0}]: {1}", index, bitIndex);
+            logger.LogDebug("SetTag[{0}]: {1}", index, bitIndex);
             // add pattern
             bitIndex.PatternWorker = PatternFactory.GetInstance().GetPattern(bitIndex);
             this.tiDic.Add(string.Format("{0:D3}", bitIndex.Id), bitIndex);

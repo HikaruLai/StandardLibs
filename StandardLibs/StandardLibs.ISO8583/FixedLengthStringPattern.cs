@@ -1,5 +1,5 @@
 ﻿using System;
-using NLog;
+using Microsoft.Extensions.Logging;
 
 namespace StandardLibs.ISO8583
 {
@@ -31,7 +31,7 @@ namespace StandardLibs.ISO8583
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                logger.LogError(ex.Message);
                 throw ex;
             }
         }

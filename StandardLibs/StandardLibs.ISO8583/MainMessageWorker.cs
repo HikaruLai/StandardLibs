@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using NLog;
+using Microsoft.Extensions.Logging;
 
 namespace StandardLibs.ISO8583
 {
@@ -11,7 +11,7 @@ namespace StandardLibs.ISO8583
         public BitWorker BitWorker { private get; set; }
         public string HasHeader { get; set; }
 
-        public MainMessageWorker(ILogger logger, IBitMapWorker bitMapWorker, BitWorker bitWorker)
+        public MainMessageWorker(ILogger<MainMessageWorker> logger, IBitMapWorker bitMapWorker, BitWorker bitWorker)
         {
             this.logger = logger;
             this.BitMapWorker = bitMapWorker;
@@ -60,7 +60,7 @@ namespace StandardLibs.ISO8583
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                logger.LogError(ex.Message);
             }
             return null;
         }
@@ -109,7 +109,7 @@ namespace StandardLibs.ISO8583
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message);
+                logger.LogError(ex.Message);
             }
             return null;
         }
@@ -131,7 +131,7 @@ namespace StandardLibs.ISO8583
             else
             {
                 string errMsg = string.Format("Error format message: {0}", msg);
-                logger.Error(errMsg);
+                logger.LogError(errMsg);
                 throw new Exception(errMsg);
             }
         }
