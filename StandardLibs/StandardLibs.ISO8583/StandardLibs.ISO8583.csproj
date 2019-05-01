@@ -5,13 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StandardLibs.Utility\StandardLibs.Utility.csproj" />
+    <None Remove="Config\iso8583Fn.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Config\iso8583Fn.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="Config\iso8583Fn.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StandardLibs.Utility\StandardLibs.Utility.csproj" />
   </ItemGroup>
 
 </Project>

@@ -23,7 +23,7 @@ namespace StandardLibs.ISO8583
                 this.tagIndexList.RemoveAt(index);
             }
             // must implement this...
-            logger.LogDebug("SetTag[{0}]: {1}", index, bitIndex);
+            //logger.LogDebug("SetTag[{0}]: {1}", index, bitIndex);
             // add pattern
             bitIndex.PatternWorker = PatternFactory.GetInstance().GetPattern(bitIndex);
             this.tiDic.Add(string.Format("{0:D3}", bitIndex.Id), bitIndex);

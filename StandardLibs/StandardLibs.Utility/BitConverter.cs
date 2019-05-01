@@ -77,6 +77,27 @@ namespace StandardLibs.Utility
            "11111000", "11111001", "11111010", "11111011", "11111100", "11111101", "11111110", "11111111"
         };
 
+        /// <summary>
+        /// Create bit string hashtable map to int value 
+        /// </summary>
+        static BitConverter()
+        {
+            //int result = -1;
+            hexBits = new Dictionary<string, int>();
+            for (int i = 0; i < bitsArr.Length; i++)
+            {
+                hexBits.Add(bitsArr[i], i);
+                /* 
+                result = Convert.ToInt32(bitsArr[i], 2);
+                log.Debug("[" + i + "]:[" + result + "]");
+                if( i != result )
+                {
+                    throw new Exception("Bit Map initial error!");
+                }
+                */
+            }
+        }
+
         public IHexConverter HexConverter { set; private get; }
 
         public BitConverter(IHexConverter hexConverter)

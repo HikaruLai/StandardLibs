@@ -17,7 +17,7 @@ namespace StandardLibs.ISO8583
         public Iso8583Info(ILogger logger, string assemblyName, string cfgFileName, string xPath)
         {
             this.logger = logger;
-            this.posList = new List<BitIndex>();
+            posList = new List<BitIndex>();
             this.setPosInfo(assemblyName, cfgFileName);
             this.getPosInfo(xPath);
         }
