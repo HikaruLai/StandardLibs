@@ -10,7 +10,7 @@ namespace StandardLibs.ISO8583
     /// </summary>
     public class PatternFactory
     {
-        private ILogger logger { get; set; }
+        private static Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private static PatternFactory patternFactory = new PatternFactory();
         private IDictionary<string, IPattern> dicPatterns = new Dictionary<string, IPattern>();
         private object obj = new object();
