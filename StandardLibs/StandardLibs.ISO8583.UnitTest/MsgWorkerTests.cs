@@ -543,179 +543,178 @@ namespace StandardLibs.ISO8583.UnitTest
             }
         }
 
-//        [Fact]
-//        public void Test11Buid0420()
-//        {
-//            string expected = @"{0,212}888808220420F220000108C000080000004000000000160000000000000000990174000000000055012818000666666610st00000001502818666666000000010000000225550030240080000000000000000000000100012818300555555500000001502818666666  ";
-//            string fromTo = "88880822";
-//            string mti = "0420";
+        [Fact]
+        public void Test11Buid0420()
+        {
+            string expected = @"{0,212}888808220420F220000108C000080000004000000000160000000000000000990174000000000055012818000666666610st00000001502818666666000000010000000225550030240080000000000000000000000100012818300555555500000001502818666666  ";
+            string fromTo = "88880822";
+            string mti = "0420";
 
-//            string[] srcList = new string[129];
-//            for (int i = 0; i < srcList.Length; i++)
-//            {
-//                srcList[i] = "";
-//            }
-//            /* 
-//02 : 0000000000000000
-//03 : 990174
-//04 : 000000000055
-//07 : 0128183006
-//11 : 666666
-//32 : st00000001
-//37 : 502818666666
-//41 : 00000001
-//42 : 000000022555003
-//61 : 008000000000000000000000
-//90 : 0100 0128183005 555555 10st00000001  
-//             */
-//            srcList[2] = "0000000000000000";
-//            srcList[3] = "990174";
-//            srcList[4] = "000000000055";
-//            srcList[7] = "0128180006";
-//            srcList[11] = "666666";
-//            srcList[32] = "st00000001";
-//            srcList[37] = "502818666666";
-//            srcList[41] = "00000001";
-//            srcList[42] = "000000022555003";
+            string[] srcList = new string[129];
+            for (int i = 0; i < srcList.Length; i++)
+            {
+                srcList[i] = "";
+            }
+            /* 
+            02 : 0000000000000000
+            03 : 990174
+            04 : 000000000055
+            07 : 0128183006
+            11 : 666666
+            32 : st00000001
+            37 : 502818666666
+            41 : 00000001
+            42 : 000000022555003
+            61 : 008000000000000000000000
+            90 : 0100 0128183005 555555 10st00000001  
+             */
+            srcList[2] = "0000000000000000";
+            srcList[3] = "990174";
+            srcList[4] = "000000000055";
+            srcList[7] = "0128180006";
+            srcList[11] = "666666";
+            srcList[32] = "st00000001";
+            srcList[37] = "502818666666";
+            srcList[41] = "00000001";
+            srcList[42] = "000000022555003";
 
-//            string[] srcListDf61 = new string[65];
-//            for (int i = 0; i < srcListDf61.Length; i++)
-//            {
-//                srcListDf61[i] = "";
-//            }
-//            srcListDf61[9] = "00000000";
-//            MessageContext msgContextDf61 = this.df61MsgWorker.Build(null, null, srcListDf61);
+            string[] srcListDf61 = new string[65];
+            for (int i = 0; i < srcListDf61.Length; i++)
+            {
+                srcListDf61[i] = "";
+            }
+            srcListDf61[9] = "00000000";
+            MessageContext msgContextDf61 = this.df61MsgWorker.Build(null, null, srcListDf61);
 
-//            srcList[61] = msgContextDf61.SrcMessage; //"008000000000000000000000";
-//            Assert.Equal("008000000000000000000000", srcList[61]);
+            srcList[61] = msgContextDf61.SrcMessage; //"008000000000000000000000";
+            Assert.Equal("008000000000000000000000", srcList[61]);
 
-//            srcList[90] = "0100" + "0128183005" + "555555" + "00000001" + "502818666666" + "  ";
+            srcList[90] = "0100" + "0128183005" + "555555" + "00000001" + "502818666666" + "  ";
 
-//            MessageContext msgContextMain = this.mainMsgWorker.Build(fromTo, mti, srcList);
+            MessageContext msgContextMain = this.mainMsgWorker.Build(fromTo, mti, srcList);
 
-//            IList<IsoField> fList = msgContextMain.FieldList.ToList();
-//            foreach (IsoField field in fList)
-//            {
-//                logger.Debug(m => m("{0}", field));
-//            }
-//            string result = msgContextMain.SrcMessage;
-//            logger.Debug(m => m("{0}", msgContextMain));
-//            Assert.Equal(expected, msgContextMain.ToString());
-//        }
+            IList<IsoField> fList = msgContextMain.FieldList.ToList();
+            foreach (IsoField field in fList)
+            {
+                logger.Debug($"{0}", field);
+            }
+            string result = msgContextMain.SrcMessage;
+            logger.Debug($"{0}", msgContextMain);
+            Assert.Equal(expected, msgContextMain.ToString());
+        }
 
-//        [Fact]
-//        public void Test12Parse0420()
-//        {
-//            IList<IsoField> expected = new List<IsoField>();
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":0,\"FuncData\":null,\"NextFuncNo\":2}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":2,\"FuncData\":\"0000000000000000\",\"NextFuncNo\":3}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":3,\"FuncData\":\"990174\",\"NextFuncNo\":4}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":4,\"FuncData\":\"000000000055\",\"NextFuncNo\":7}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":7,\"FuncData\":\"0128180006\",\"NextFuncNo\":11}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":11,\"FuncData\":\"666666\",\"NextFuncNo\":32}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":32,\"FuncData\":\"st00000001\",\"NextFuncNo\":37}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":37,\"FuncData\":\"502818666666\",\"NextFuncNo\":41}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":41,\"FuncData\":\"00000001\",\"NextFuncNo\":42}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":42,\"FuncData\":\"000000022555003\",\"NextFuncNo\":61}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":61,\"FuncData\":\"008000000000000000000000\",\"NextFuncNo\":90}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":90,\"FuncData\":\"0100012818300555555500000001502818666666  \",\"NextFuncNo\":-1}"));
+        [Fact]
+        public void Test12Parse0420()
+        {
+            IList<IsoField> expected = new List<IsoField>();
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":0,\"FuncData\":null,\"NextFuncNo\":2}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":2,\"FuncData\":\"0000000000000000\",\"NextFuncNo\":3}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":3,\"FuncData\":\"990174\",\"NextFuncNo\":4}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":4,\"FuncData\":\"000000000055\",\"NextFuncNo\":7}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":7,\"FuncData\":\"0128180006\",\"NextFuncNo\":11}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":11,\"FuncData\":\"666666\",\"NextFuncNo\":32}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":32,\"FuncData\":\"st00000001\",\"NextFuncNo\":37}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":37,\"FuncData\":\"502818666666\",\"NextFuncNo\":41}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":41,\"FuncData\":\"00000001\",\"NextFuncNo\":42}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":42,\"FuncData\":\"000000022555003\",\"NextFuncNo\":61}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":61,\"FuncData\":\"008000000000000000000000\",\"NextFuncNo\":90}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":90,\"FuncData\":\"0100012818300555555500000001502818666666  \",\"NextFuncNo\":-1}"));
 
-//            212
-//            string msg = @"888808220420F220000108C000080000004000000000160000000000000000990174000000000055012818000666666610st00000001502818666666000000010000000225550030240080000000000000000000000100012818300555555500000001502818666666  ";
+            //212
+            string msg = @"888808220420F220000108C000080000004000000000160000000000000000990174000000000055012818000666666610st00000001502818666666000000010000000225550030240080000000000000000000000100012818300555555500000001502818666666  ";
 
-//            MsgContext msgContextMain = this.mainMsgWorker.Parse(msg);
+            MessageContext msgContextMain = this.mainMsgWorker.Parse(msg);
 
-//            IList<IsoField> fList = msgContextMain.FieldList.ToList();
-//            for (int i = 0; i < fList.Count; i++)
-//            {
-//                IsoField field = fList[i];
-//                logger.Debug(m => m("{0}", field));
-//                Assert.Equal(expected[i], field);
-//            }
-//            logger.Debug(m => m("{0}:{1}", msgContextMain.FromTo, msgContextMain.Mti));
-//            logger.Debug(m => m("{0}", msgContextMain));
-//        }
+            IList<IsoField> fList = msgContextMain.FieldList.ToList();
+            for (int i = 0; i < fList.Count; i++)
+            {
+                IsoField field = fList[i];
+                logger.Debug($"{0}", field);
+                Assert.Equal(expected[i], field);
+            }
+            logger.Debug($"{0}:{1}", msgContextMain.FromTo, msgContextMain.Mti);
+            logger.Debug($"{0}", msgContextMain);
+        }
 
-//        [Fact]
-//        public void Test13Buid0430()
-//        {
-//            string expected = //@"187082288880420F220000108C000080000004000000000160000000000000000990174000000000055012818000666666610st00000001502818666666000000010000000225550030240080000000000000000000000100012818300555555500000001502818666666  ";
-//                                @"{0,187}082288880430F22000010AC000000000004000000000160000000000000000990174000000000055012818000666666610st0000000150281866666600000000010000000225550030100012818300555555500000001502818666666  ";
-//            string fromTo = "08228888";
-//            string mti = "0430";
+        [Fact]
+        public void Test13Buid0430()
+        {
+            string expected = //@"187082288880420F220000108C000080000004000000000160000000000000000990174000000000055012818000666666610st00000001502818666666000000010000000225550030240080000000000000000000000100012818300555555500000001502818666666  ";
+                                @"{0,187}082288880430F22000010AC000000000004000000000160000000000000000990174000000000055012818000666666610st0000000150281866666600000000010000000225550030100012818300555555500000001502818666666  ";
+            string fromTo = "08228888";
+            string mti = "0430";
 
-//            string[] srcList = new string[129];
-//            /* 
-//02 : 160000000000000000
-//03 : 990174
-//04 : 000000000055
-//07 : 0128183006
-//11 : 666666
-//32 : 10st00000001
-//37 : 502818666666
-//39 : 00
-//41 : 00000001
-//42 : 000000022555003
-//90 : 0100012818300555555500000001502818666666  "   
-//             */
-//            srcList[2] = "0000000000000000";
-//            srcList[3] = "990174";
-//            srcList[4] = "000000000055";
-//            srcList[7] = "0128180006";
-//            srcList[11] = "666666";
-//            srcList[32] = "st00000001";
-//            srcList[37] = "502818666666";
-//            srcList[39] = "00";
-//            srcList[41] = "00000001";
-//            srcList[42] = "000000022555003";
-//            srcList[90] = "0100" + "0128183005" + "555555" + "00000001" + "502818666666" + "  ";
+            string[] srcList = new string[129];
+            /* 
+            02 : 160000000000000000
+            03 : 990174
+            04 : 000000000055
+            07 : 0128183006
+            11 : 666666
+            32 : 10st00000001
+            37 : 502818666666
+            39 : 00
+            41 : 00000001
+            42 : 000000022555003
+            90 : 0100012818300555555500000001502818666666  "   
+             */
+            srcList[2] = "0000000000000000";
+            srcList[3] = "990174";
+            srcList[4] = "000000000055";
+            srcList[7] = "0128180006";
+            srcList[11] = "666666";
+            srcList[32] = "st00000001";
+            srcList[37] = "502818666666";
+            srcList[39] = "00";
+            srcList[41] = "00000001";
+            srcList[42] = "000000022555003";
+            srcList[90] = "0100" + "0128183005" + "555555" + "00000001" + "502818666666" + "  ";
 
-//            MsgContext msgContextMain = this.mainMsgWorker.Build(fromTo, mti, srcList);
+            MessageContext msgContextMain = this.mainMsgWorker.Build(fromTo, mti, srcList);
 
-//            IList<IsoField> fList = msgContextMain.FieldList.ToList();
-//            for (int i = 0; i < fList.Count; i++)
-//            {
-//                IsoField field = fList[i];
-//                logger.Debug(m => m("{0}", field));
-//            }
-//            logger.Debug(m => m("{0}:{1}", msgContextMain.FromTo, msgContextMain.Mti));
-//            logger.Debug(m => m("{0}", msgContextMain));
-//            string result = msgContextMain.SrcMessage;
-//            logger.Debug(m => m("[{0}]", msgContextMain));
-//            Assert.Equal(expected, msgContextMain.ToString());
-//        }
+            IList<IsoField> fList = msgContextMain.FieldList.ToList();
+            for (int i = 0; i < fList.Count; i++)
+            {
+                IsoField field = fList[i];
+                logger.Debug($"{0}", field);
+            }
+            logger.Debug($"{0}:{1}", msgContextMain.FromTo, msgContextMain.Mti);
+            logger.Debug($"{0}", msgContextMain);
+            string result = msgContextMain.SrcMessage;
+            logger.Debug($"[{0}]", msgContextMain);
+            Assert.Equal(expected, msgContextMain.ToString());
+        }
 
-//        [Test]
-//        public void Test14Parse0430()
-//        {
-//            IList<IsoField> expected = new List<IsoField>();
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":0,\"FuncData\":null,\"NextFuncNo\":2}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":2,\"FuncData\":\"0000000000000000\",\"NextFuncNo\":3}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":3,\"FuncData\":\"990174\",\"NextFuncNo\":4}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":4,\"FuncData\":\"000000000055\",\"NextFuncNo\":7}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":7,\"FuncData\":\"0128180006\",\"NextFuncNo\":11}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":11,\"FuncData\":\"666666\",\"NextFuncNo\":32}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":32,\"FuncData\":\"st00000001\",\"NextFuncNo\":37}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":37,\"FuncData\":\"502818666666\",\"NextFuncNo\":39}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":39,\"FuncData\":\"00\",\"NextFuncNo\":41}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":41,\"FuncData\":\"00000001\",\"NextFuncNo\":42}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":42,\"FuncData\":\"000000022555003\",\"NextFuncNo\":90}"));
-//            expected.Add(this.jworker.Deserialize("{\"FuncNo\":90,\"FuncData\":\"0100012818300555555500000001502818666666  \",\"NextFuncNo\":-1}"));
-//            string msg =
-//                @"082288880430F22000010AC000000000004000000000160000000000000000990174000000000055012818000666666610st0000000150281866666600000000010000000225550030100012818300555555500000001502818666666  ";
-//            @"888808220312622400000A0000081600000000000000009901760128180007777777151250281877777700030010000000000000020150128180007";
-//            MsgContext msgContextMain = this.mainMsgWorker.Parse(msg);
+        [Fact]
+        public void Test14Parse0430()
+        {
+            IList<IsoField> expected = new List<IsoField>();
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":0,\"FuncData\":null,\"NextFuncNo\":2}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":2,\"FuncData\":\"0000000000000000\",\"NextFuncNo\":3}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":3,\"FuncData\":\"990174\",\"NextFuncNo\":4}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":4,\"FuncData\":\"000000000055\",\"NextFuncNo\":7}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":7,\"FuncData\":\"0128180006\",\"NextFuncNo\":11}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":11,\"FuncData\":\"666666\",\"NextFuncNo\":32}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":32,\"FuncData\":\"st00000001\",\"NextFuncNo\":37}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":37,\"FuncData\":\"502818666666\",\"NextFuncNo\":39}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":39,\"FuncData\":\"00\",\"NextFuncNo\":41}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":41,\"FuncData\":\"00000001\",\"NextFuncNo\":42}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":42,\"FuncData\":\"000000022555003\",\"NextFuncNo\":90}"));
+            expected.Add(this.jworker.Deserialize("{\"FuncNo\":90,\"FuncData\":\"0100012818300555555500000001502818666666  \",\"NextFuncNo\":-1}"));
+            string msg =
+                @"082288880430F22000010AC000000000004000000000160000000000000000990174000000000055012818000666666610st0000000150281866666600000000010000000225550030100012818300555555500000001502818666666  ";
+            MessageContext msgContextMain = this.mainMsgWorker.Parse(msg);
 
-//            IList<IsoField> fList = msgContextMain.FieldList.ToList();
-//            for (int i = 0; i < fList.Count; i++)
-//            {
-//                IsoField field = fList[i];
-//                logger.Debug(m => m("{0}", field));
-//                Assert.Equal(expected[i], field);
-//            }
-//            logger.Debug(m => m("{0}:{1}", msgContextMain.FromTo, msgContextMain.Mti));
-//            logger.Debug(m => m("[{0}]", msgContextMain));
-//        }
+            IList<IsoField> fList = msgContextMain.FieldList.ToList();
+            for (int i = 0; i < fList.Count; i++)
+            {
+                IsoField field = fList[i];
+                logger.Debug($"{0}", field);
+                Assert.Equal(expected[i], field);
+            }
+            logger.Debug($"{0}:{1}", msgContextMain.FromTo, msgContextMain.Mti);
+            logger.Debug($"[{0}]", msgContextMain);
+        }
 
         //        [Fact]
         //        public void Test21ParseSignOnRequest()
