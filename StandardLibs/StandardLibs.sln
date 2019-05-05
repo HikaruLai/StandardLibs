@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandardLibs.ISO8583.UnitTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandardLibs.Dna", "StandardLibs.Dna\StandardLibs.Dna.csproj", "{E46DCE9E-5617-49D3-86B0-84911FAC6097}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardLibs.Cache", "StandardLibs.Cache\StandardLibs.Cache.csproj", "{508CC9D1-789E-4A37-9EE1-A511A5657E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandardLibs.Cache", "StandardLibs.Cache\StandardLibs.Cache.csproj", "{508CC9D1-789E-4A37-9EE1-A511A5657E8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardLibs.Cache.UnitTest", "StandardLibs.Cache.UnitTest\StandardLibs.Cache.UnitTest.csproj", "{17B68480-0AEB-4C16-BB00-8C8AA11A7D6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{508CC9D1-789E-4A37-9EE1-A511A5657E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{508CC9D1-789E-4A37-9EE1-A511A5657E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{508CC9D1-789E-4A37-9EE1-A511A5657E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17B68480-0AEB-4C16-BB00-8C8AA11A7D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17B68480-0AEB-4C16-BB00-8C8AA11A7D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17B68480-0AEB-4C16-BB00-8C8AA11A7D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17B68480-0AEB-4C16-BB00-8C8AA11A7D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

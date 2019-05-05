@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.6.3" />
+    <PackageReference Include="NLog.Config" Version="4.6.3" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StandardLibs.Cache\StandardLibs.Cache.csproj" />
+    <ProjectReference Include="..\StandardLibs.Dna\StandardLibs.Dna.csproj" />
+    <ProjectReference Include="..\StandardLibs.Utility\StandardLibs.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

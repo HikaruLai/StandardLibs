@@ -42,8 +42,7 @@ namespace StandardLibs.Utility
         {
             return this.GetStrByDate(DateTime.Now);
         }
-
-        //
+    
         public bool TryGetDateByStr(string strDate, out DateTime d)
         {
             return DateTime.TryParseExact(
@@ -93,7 +92,7 @@ namespace StandardLibs.Utility
             }
             return false;
         }
-        //        
+              
         public bool ValidDateStr(string strDate)
         {
             return (this.TryGetDateByStr(strDate, out DateTime d));
@@ -144,10 +143,6 @@ namespace StandardLibs.Utility
                 }
             }
             uint seconds = System.BitConverter.ToUInt32(unixTime, 0);
-            //log.Debug(seconds);
-            //string p_str = BitConverter.ToString(unixTime).Replace("-", "").Trim();
-            //seconds = Convert.ToUInt32(p_str, 16);
-            //log.Debug( m => m( "{0}:{1}:{2}", p_str, seconds, BitConverter.IsLittleEndian ) );
             return this.GetStrByDateTime(UNIX_START.AddSeconds(seconds));
         }
 
