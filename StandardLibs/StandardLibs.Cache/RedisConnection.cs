@@ -16,11 +16,7 @@ namespace StandardLibs.Cache
             this.Config = config;
             this.lazyConnection = new Lazy<ConnectionMultiplexer>
             (
-                () =>
-                {
-                    //log.Debug( m => m( "New Connection..." ));
-                    return ConnectionMultiplexer.Connect(this.Config);
-                }
+                () => { return ConnectionMultiplexer.Connect(this.Config); }
             );
         }
 
@@ -42,12 +38,10 @@ namespace StandardLibs.Cache
             catch
             {
             }
+
             this.lazyConnection = new Lazy<ConnectionMultiplexer>
             (
-                () =>
-                {
-                    return ConnectionMultiplexer.Connect(this.Config);
-                }
+                () =>{ return ConnectionMultiplexer.Connect(this.Config); }
             );
         }
     }

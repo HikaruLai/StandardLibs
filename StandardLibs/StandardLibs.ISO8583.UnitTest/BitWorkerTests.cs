@@ -50,7 +50,6 @@ namespace StandardLibs.ISO8583.UnitTest
             this.ctx = Framework.Container;
             this.commonBitWorker = this.ctx.GetInstance<BitWorker>("commonBitWorker");
             this.df61BitWorker = this.ctx.GetInstance<BitWorker>("df61BitWorker");
-
         }
 
         [Fact]

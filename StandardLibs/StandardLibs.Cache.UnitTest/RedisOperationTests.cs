@@ -16,14 +16,13 @@ namespace StandardLibs.Cache.UnitTest
 
         public RedisOprationTests()
         {
-            //this.redis = ConnectionMultiplexer.Connect(@"10.27.68.168:6379,Password=123@bankpro");
-            this.redis = Framework.Container.GetInstance<RedisConnection>("redis1");
+            this.redis = Framework.Container.GetInstance<RedisConnection>("redis");
         }
 
         [Fact]
         public void Test01RetriveString()
         {
-            string key = "keyTest1";
+            string key = "keyTest";
             string value = "Hello Redis!";
 
             //Try and retrieve from Redis

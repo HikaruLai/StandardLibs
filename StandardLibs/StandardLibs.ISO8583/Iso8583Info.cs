@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 using System.Xml.XPath;
@@ -56,18 +57,16 @@ namespace StandardLibs.ISO8583
             try
             {
                 xtr = this.root.XPathSelectElement(xPathStr);
-
-                xPathStr = @"./BITS";
-                xtr = xtr.XPathSelectElement(xPathStr);
-                IEnumerable<XElement> xenu = xtr.Elements("BIT");
-                foreach (XElement xe in xenu)
-                {
-                    BitIndex pi = new BitIndex();
-                    pi.Id = (int)xe.Attribute("id");
-                    pi.Representation = (string)xe.Attribute("representation");
-                    pi.Name = (string)xe.Attribute("name");
-                    this.posList.Add(pi);
-                }
+                xtr.Element("BITS").Elements("BIT").ToList()
+                    .ForEach(x =>
+                    {
+                        this.posList.Add(new BitIndex
+                        {
+                            Id = (int)x.Attribute("id"),
+                            Representation = (string)x.Attribute("representation"),
+                            Name = (string)x.Attribute("name")
+                        });
+                    });
             }
             catch (Exception ex)
             {

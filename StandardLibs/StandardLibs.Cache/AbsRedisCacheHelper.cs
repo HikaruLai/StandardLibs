@@ -17,7 +17,7 @@ namespace StandardLibs.Cache
         /// </summary>
         protected RedisConnection redisConnection { private get; set; }
 
-        protected string keyPrefix = String.Empty;
+        protected string keyPrefix = string.Empty;
         public string KeyPrefix
         {
             get { return this.keyPrefix; }
